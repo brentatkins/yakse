@@ -6,8 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Yakse.Core;
-using Yakse.Core.Commands;
-using Yakse.Core.Services.MarketData;
+using Yakse.Core.Pricing.Commands;
+using Yakse.Core.Pricing.Services.MarketData;
 using Yakse.Infrastructure;
 
 namespace Yakse.Web

@@ -3,10 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Yakse.Core.Entities;
-using Yakse.Core.Services.MarketData;
+using Yakse.Core.Pricing.Services.MarketData;
 
-namespace Yakse.Core.Queries
+namespace Yakse.Core.Pricing.Queries
 {
     public class StockPriceRequestHandler : IRequestHandler<StockPriceRequest, IEnumerable<StockPriceDto>>
     {

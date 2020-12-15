@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MediatR;
 
-namespace Yakse.Core.Queries
+namespace Yakse.Core.Pricing.Queries
 {
     public class StockPriceRequest : IRequest<IEnumerable<StockPriceDto>>
     {

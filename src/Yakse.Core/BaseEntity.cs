@@ -2,7 +2,7 @@ using System;
 
 namespace Yakse.Core
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         public BaseEntity()
         {

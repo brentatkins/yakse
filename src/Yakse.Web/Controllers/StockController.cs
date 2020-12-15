@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Yakse.Core.Queries;
+using Yakse.Core.Pricing.Queries;
 
 namespace Yakse.Web.Controllers
 {
@@ -10,9 +10,9 @@ namespace Yakse.Web.Controllers
     [Route("api/[controller]")]
     public class StockController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly ISender _mediator;
 
-        public StockController(IMediator mediator)
+        public StockController(ISender mediator)
         {
             _mediator = mediator;
         }

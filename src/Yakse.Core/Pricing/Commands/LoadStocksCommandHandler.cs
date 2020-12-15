@@ -3,9 +3,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Yakse.Core.Entities;
 
-namespace Yakse.Core.Commands
+namespace Yakse.Core.Pricing.Commands
 {
     public class LoadStocksCommandHandler : AsyncRequestHandler<LoadStocksCommand>
     {
@@ -21,7 +20,7 @@ namespace Yakse.Core.Commands
         {
             var newStockCodes = CreateStockCodes(request.Count);
             var stocks = newStockCodes
-                .Select(code => new Stock(code))
+                .Select(Stock.Create)
                 .Select(stock => _repository.Insert(stock));
 
             return Task.WhenAll(stocks);

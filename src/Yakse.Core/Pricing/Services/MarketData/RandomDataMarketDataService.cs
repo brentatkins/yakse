@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Yakse.Core.Services.MarketData
+namespace Yakse.Core.Pricing.Services.MarketData
 {
     public class RandomDataMarketDataService : IMarketDataService
     {

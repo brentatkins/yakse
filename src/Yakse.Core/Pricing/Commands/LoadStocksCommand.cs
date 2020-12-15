@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Yakse.Core.Commands
+namespace Yakse.Core.Pricing.Commands
 {
     public class LoadStocksCommand : IRequest
     {

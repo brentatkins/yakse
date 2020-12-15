@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Yakse.Core.Commands;
+using Yakse.Core.Pricing.Commands;
 
 namespace Yakse.Web.Controllers
 {
@@ -9,9 +9,9 @@ namespace Yakse.Web.Controllers
     [Route("api")]
     public class AdminController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly ISender _mediator;
 
-        public AdminController(IMediator mediator)
+        public AdminController(ISender mediator)
         {
             this._mediator = mediator;
         }

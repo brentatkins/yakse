@@ -41,11 +41,16 @@ namespace Yakse.Infrastructure
 
         public Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> expression) where T : BaseEntity
         {
-            var items = _items[typeof(T)]
-                .Select(x => (T)x.Value)
-                .Where(expression.Compile());
+            if (_items.ContainsKey((typeof(T))))
+            {
+                var items = _items[typeof(T)]
+                    .Select(x => (T) x.Value)
+                    .Where(expression.Compile());
 
-            return Task.FromResult(items);
+                return Task.FromResult(items);
+            }
+
+            return Task.FromResult(Enumerable.Empty<T>());
         }
 
         public Task Insert<T>(T obj) where T : BaseEntity

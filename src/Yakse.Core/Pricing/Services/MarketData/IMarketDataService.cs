@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Yakse.Core.Services.MarketData
+namespace Yakse.Core.Pricing.Services.MarketData
 {
     public interface IMarketDataService
     {
