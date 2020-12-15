@@ -7,6 +7,7 @@
         <th>Change</th>
         <th>% Change</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -23,8 +24,17 @@
             stock.deltaRatio | percent: ".2"
           }}</app-stock-price-movement>
         </td>
-        <td>buy</td>
+        <td><a type="button" (click)="buyStock(stock)" href="#">buy</a></td>
+        <td><app-stock-price-staleness [priceDate]="stock.priceDate"></app-stock-price-staleness></td>
       </tr>
     </tbody>
   </table>
 </div>
+<app-modal title="Stock details">
+  <ng-container *ngIf="selectedStock">
+    <app-buy-stock [stock]="selectedStock" (placeOrderEvent)="placeOrder($event)"></app-buy-stock>
+  </ng-container>
+  <ng-container *ngIf="orderPlaced">
+    <p>You have placed an order for {{ orderPlaced.quantity }} units of stock {{ orderPlaced.symbol }} at price {{ orderPlaced.bidPrice | number:'.2'}}</p>
+  </ng-container>
+</app-modal>

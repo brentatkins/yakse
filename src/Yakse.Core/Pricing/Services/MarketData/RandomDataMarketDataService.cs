@@ -9,7 +9,7 @@ namespace Yakse.Core.Pricing.Services.MarketData
     {
         private const int UpdateFrequencyInSeconds = 10;
 
-        private readonly Dictionary<string, (DateTime LastTradeDate, decimal Open, decimal High, decimal Low, decimal Last)> _tickers = new Dictionary<string, (DateTime LastTradeDate, decimal Open, decimal High, decimal Low, decimal Last)>();
+        private readonly Dictionary<string, (DateTime LastTradeDate, decimal Open, decimal High, decimal Low, decimal Last)> _tickers = new();
         private static readonly Random Rand = new Random();
         
         public Task<IEnumerable<StockTick>> GetIntradayPrice(string[] symbols)
@@ -28,7 +28,7 @@ namespace Yakse.Core.Pricing.Services.MarketData
 
             // change this to generate prices automatically, rather than when ever prices are requested
             if (DateTime.UtcNow.Subtract(lastTradeDate).Seconds < UpdateFrequencyInSeconds) {
-                return new StockTick(symbol, open, high, low, last);
+                return new StockTick(symbol, open, high, low, last, DateTime.UtcNow);
             }
 
             var next = GetNewMarketPrice(last);
@@ -42,7 +42,7 @@ namespace Yakse.Core.Pricing.Services.MarketData
 
             _tickers[symbol] = (DateTime.UtcNow, open, high, low, next);
 
-            return new StockTick(symbol, open, high, low, next);
+            return new StockTick(symbol, open, high, low, next, DateTime.UtcNow);
         }
 
         private void AddNewTicker(string symbol){
