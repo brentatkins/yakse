@@ -12,6 +12,7 @@ import { StockPriceMovementComponent } from './stock-price-movement/stock-price-
 import { BuyStockComponent } from './buy-stock/buy-stock.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { StockPriceStalenessComponent } from './stock-price-staleness/stock-price-staleness.component';
+import { StockPriceTableComponent } from './stock-price-table/stock-price-table.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { StockPriceStalenessComponent } from './stock-price-staleness/stock-pric
     NavMenuComponent,
     StockPriceMovementComponent,
     BuyStockComponent,
-    StockPriceStalenessComponent
+    StockPriceStalenessComponent,
+    StockPriceTableComponent
   ],
   imports: [
     BrowserModule,

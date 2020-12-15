@@ -1,8 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
-import {StockPrice} from "../stocks/stockPrice";
-import {StocksService} from "../stocks/stocks.service";
+import {StockPrice} from "../models";
 
 @Component({
   selector: 'app-buy-stock',

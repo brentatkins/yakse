@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { StocksService } from './stocks.service';
-import {StockOrder, StockPrice} from './stockPrice';
+import { StockPricingService } from '../services/stock-pricing.service';
+import { OrderService } from '../services/order.service';
+import { StockOrder, StockPrice } from '../models';
 import { ModalService } from "../modal/modal.service";
 
 @Component({
   selector: 'app-stocks',
   templateUrl: './stocks.component.html',
-  providers: [StocksService],
+  providers: [StockPricingService, OrderService],
   styleUrls: ['./stocks.component.css'],
 })
 export class StocksComponent implements OnInit {
@@ -14,7 +15,7 @@ export class StocksComponent implements OnInit {
   selectedStock?: StockPrice;
   orderPlaced?: StockOrder;
 
-  constructor(private stocksService: StocksService, private modalService: ModalService) {
+  constructor(private pricingService: StockPricingService, private orderService: OrderService, private modalService: ModalService) {
     this.stockPrices = [];
     this.modalService.watch().subscribe(isOpen => !isOpen && this.onModalClose());
   }
@@ -24,7 +25,7 @@ export class StocksComponent implements OnInit {
   }
 
   getStockPrices(): void {
-    this.stocksService
+    this.pricingService
       .getStockPrices()
       .subscribe((s) => this.updateStockPrices(s));
   }
@@ -39,7 +40,7 @@ export class StocksComponent implements OnInit {
       const { symbol, lastPrice: bidPrice} = this.selectedStock;
       const order = { customerId: "1", symbol, quantity, bidPrice}
 
-      this.stocksService.placeOrder(order)
+      this.orderService.placeOrder(order)
         .subscribe(() => {
           this.selectedStock = undefined;
           this.orderPlaced = order;
