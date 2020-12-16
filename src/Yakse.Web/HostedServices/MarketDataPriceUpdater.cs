@@ -37,7 +37,7 @@ namespace Yakse.Web.HostedServices
             _logger.LogInformation("here 33");
 
             Debug.WriteLine("update prices now");
-            var orderHistory = await _mediator.Send(new UpdateTickersCommand());
+            var orderHistory = await _mediator.Send(new UpdateTickers());
             _logger.LogInformation(orderHistory.ToString());
         }
     }

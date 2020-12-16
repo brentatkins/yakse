@@ -7,24 +7,24 @@ using Yakse.Core.Pricing.Services.MarketData;
 
 namespace Yakse.Core.Pricing.Commands
 {
-    public class UpdateTickersCommand : IRequest
+    public class UpdateTickers : IRequest
     {
     }
 
-    public class UpdateTickersCommandHandler : AsyncRequestHandler<UpdateTickersCommand>
+    public class UpdateTickersHandler : AsyncRequestHandler<UpdateTickers>
     {
         private readonly IPublisher _mediator;
         private readonly IMarketDataProvider _marketDataProvider;
         private readonly IRepository _repository;
 
-        public UpdateTickersCommandHandler(IPublisher mediator, IMarketDataProvider marketDataProvider, IRepository repository)
+        public UpdateTickersHandler(IPublisher mediator, IMarketDataProvider marketDataProvider, IRepository repository)
         {
             _mediator = mediator;
             _marketDataProvider = marketDataProvider;
             _repository = repository;
         }
 
-        protected override async Task Handle(UpdateTickersCommand request, CancellationToken cancellationToken)
+        protected override async Task Handle(UpdateTickers request, CancellationToken cancellationToken)
         {
             var stocks = await _repository.All<Stock>();
             var stockSymbols = stocks.Select(s => s.Symbol).ToArray();

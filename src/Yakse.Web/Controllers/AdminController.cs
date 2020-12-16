@@ -19,7 +19,7 @@ namespace Yakse.Web.Controllers
         [HttpPost]
         [Route("load/{count:int}")]
         public async Task Load(int count) {
-            await _mediator.Send(new LoadStocksCommand(count));
+            await _mediator.Send(new LoadStocks(count));
         }
     }
 }

@@ -6,16 +6,35 @@ using Yakse.Core.Pricing;
 
 namespace Yakse.Core.Orders.Commands
 {
-    public class PlaceOrderCommandHandler : AsyncRequestHandler<PlaceOrderCommand>
+    public class PlaceOrder : IRequest
+    {
+        public PlaceOrder(string customerId, string symbol, int quantity, decimal bidPrice)
+        {
+            CustomerId = customerId;
+            Symbol = symbol;
+            Quantity = quantity;
+            BidPrice = bidPrice;
+        }
+
+        public string CustomerId { get; }
+        
+        public string Symbol { get; }
+
+        public int Quantity { get; }
+
+        public decimal BidPrice { get; }
+    }
+    
+    public class PlaceOrderHandler : AsyncRequestHandler<PlaceOrder>
     {
         private readonly IRepository _repository;
 
-        public PlaceOrderCommandHandler(IRepository repository)
+        public PlaceOrderHandler(IRepository repository)
         {
             _repository = repository;
         }
         
-        protected override async Task Handle(PlaceOrderCommand request, CancellationToken cancellationToken)
+        protected override async Task Handle(PlaceOrder request, CancellationToken cancellationToken)
         {
             var order = Order.PlaceOrder(request.CustomerId, request.Symbol, request.Quantity, request.BidPrice);
             await _repository.Insert(order);

@@ -13,7 +13,7 @@ namespace Yakse.Core.Tests
         {
             var serviceCollection = new ServiceCollection();
 
-            serviceCollection.AddMediatR(typeof(LoadStocksCommand));
+            serviceCollection.AddMediatR(typeof(LoadStocks));
             serviceCollection.AddScoped<IRepository, InMemoryRepository>();
             
             var provider = serviceCollection.BuildServiceProvider();

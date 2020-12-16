@@ -19,7 +19,7 @@ namespace Yakse.Core.Tests.Orders
             var symbol = "aaa";
             var quantity = 10;
             var bidPrice = 123.32424m;
-            var placeOrderCommand = new PlaceOrderCommand(customerId, symbol, quantity, bidPrice);
+            var placeOrderCommand = new PlaceOrder(customerId, symbol, quantity, bidPrice);
             
             // act
             await Mediator.Send(placeOrderCommand);
@@ -40,7 +40,7 @@ namespace Yakse.Core.Tests.Orders
             var symbol = "aaa";
             var quantity = 10;
             var bidPrice = 123.32424m;
-            var placeOrderCommand = new PlaceOrderCommand(customerId, symbol, quantity, bidPrice);
+            var placeOrderCommand = new PlaceOrder(customerId, symbol, quantity, bidPrice);
             
             // act
             await Mediator.Send(placeOrderCommand);

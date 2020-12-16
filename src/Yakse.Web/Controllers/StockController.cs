@@ -19,7 +19,7 @@ namespace Yakse.Web.Controllers
 
         public async Task<IEnumerable<StockPriceDto>> Get()
         {
-            var prices = await _mediator.Send(new StockPriceRequest());
+            var prices = await _mediator.Send(new GetStockPrices());
 
             return prices;
         }

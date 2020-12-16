@@ -31,7 +31,7 @@ namespace Yakse.Web
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
             
-            services.AddMediatR(typeof(LoadStocksCommand));
+            services.AddMediatR(typeof(LoadStocks));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

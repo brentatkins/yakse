@@ -31,7 +31,7 @@ namespace Yakse.Web.Controllers
         [HttpPost]
         public async Task PlaceOrder(PlaceOrderRequest placeOrder)
         {
-            var command = new PlaceOrderCommand(HardcodedCustomerId, placeOrder.Symbol, placeOrder.Quantity,
+            var command = new PlaceOrder(HardcodedCustomerId, placeOrder.Symbol, placeOrder.Quantity,
                 placeOrder.BidPrice);
             await _mediator.Send(command);
         }

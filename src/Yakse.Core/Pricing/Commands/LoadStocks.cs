@@ -6,17 +6,27 @@ using MediatR;
 
 namespace Yakse.Core.Pricing.Commands
 {
-    public class LoadStocksCommandHandler : AsyncRequestHandler<LoadStocksCommand>
+    public class LoadStocks : IRequest
+    {
+        public int Count { get; }
+
+        public LoadStocks(int count)
+        {
+            Count = count;
+        }
+    }
+    
+    public class LoadStocksHandler : AsyncRequestHandler<LoadStocks>
     {
         private static readonly Random Rand = new();
         private readonly IRepository _repository;
 
-        public LoadStocksCommandHandler(IRepository repository)
+        public LoadStocksHandler(IRepository repository)
         {
             _repository = repository;
         }
 
-        protected override Task Handle(LoadStocksCommand request, CancellationToken cancellationToken)
+        protected override Task Handle(LoadStocks request, CancellationToken cancellationToken)
         {
             var newStockCodes = CreateStockCodes(request.Count);
             var stocks = newStockCodes
