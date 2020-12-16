@@ -20,4 +20,5 @@ export interface Order {
   status: string;
   tradePrice?: number;
   tradeDate?: Date;
+  total: number;
 }

@@ -8,6 +8,7 @@
     <th>Status</th>
     <th>Trade Date</th>
     <th>Trade Price</th>
+    <th>Total</th>
   </tr>
   </thead>
   <tbody>
@@ -18,7 +19,8 @@
     <td class="has-text-right">{{ order.bidPrice | number:'.3-3' }}</td>
     <td>{{ order.status }}</td>
     <td>{{ order.tradeDate | date:'short' }}</td>
-    <td>{{ order.tradePrice | number:'.3-3' }}</td>
+    <td class="has-text-right">{{ order.tradePrice | number:'.3-3' }}</td>
+    <td class="has-text-right">{{ order.total | number: '0.2-2'}}</td>
   </tr>
   </tbody>
 </table>

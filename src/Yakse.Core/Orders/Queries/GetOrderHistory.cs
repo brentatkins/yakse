@@ -17,7 +17,7 @@ namespace Yakse.Core.Orders.Queries
         }
     }
 
-    public record OrderDto(string CustomerId, string Symbol, int Quantity, decimal BidPrice, DateTime OrderDate, string Status, decimal? TradePrice, DateTime? TradeDate);
+    public record OrderDto(string CustomerId, string Symbol, int Quantity, decimal BidPrice, DateTime OrderDate, string Status, decimal? TradePrice, DateTime? TradeDate, decimal? Total);
     
     public class GetOrderHistoryHandler : IRequestHandler<GetOrderHistory, IEnumerable<OrderDto>>
     {
@@ -34,7 +34,7 @@ namespace Yakse.Core.Orders.Queries
             
             return orders
                 .OrderByDescending(x => x.OrderDate)
-                .Select(o => new OrderDto(o.CustomerId, o.Symbol, o.Quantity, o.BidPrice, o.OrderDate, o.Status.ToString(), o.TradePrice, o.TradeDate));
+                .Select(o => new OrderDto(o.CustomerId, o.Symbol, o.Quantity, o.BidPrice, o.OrderDate, o.Status.ToString(), o.TradePrice, o.TradeDate, o.TradePrice != null ? o.Quantity * o.TradePrice : null));
         }
     }
 }
