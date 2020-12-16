@@ -1,20 +1,25 @@
 import {Component, Input, OnChanges, OnInit, OnDestroy, SimpleChanges} from '@angular/core';
 import {merge, Observable, Subject, Subscription, timer} from "rxjs";
 import {filter, map, mapTo, startWith, switchMap, tap} from "rxjs/operators";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-stock-price-staleness',
   template: `
-      <span *ngIf="isStale" class="icon has-text-warning">
+    <span *ngIf="isStale">
+      <span class="icon has-text-warning">
         <i class="fas fa-exclamation-triangle"></i>
       </span>
-  <span *ngIf="!isStale" class="icon"></span>`
+      <span class="is-size-7">Updated: {{ priceAge | number:'.0-0' }}s ago</span>
+    </span>
+        <span *ngIf="!isStale" class="icon"></span>`
 })
 export class StockPriceStalenessComponent implements OnInit, OnChanges, OnDestroy {
   @Input() priceDate!: Date;
   isStale: boolean = false;
+  priceAge?: number;
 
-  private stalenessThreshold = 6000;
+  private stalenessThreshold = 10000;
 
   private priceDateChanged$ = new Subject();
   private timer$: Observable<any>;
@@ -30,7 +35,8 @@ export class StockPriceStalenessComponent implements OnInit, OnChanges, OnDestro
 
   ngOnInit(){
     this.subscription = this.timer$.subscribe(isStale => {
-      this.isStale = isStale
+      this.priceAge = moment.duration(moment().diff(this.priceDate)).asSeconds();
+      this.isStale = isStale;
     });
   }
 

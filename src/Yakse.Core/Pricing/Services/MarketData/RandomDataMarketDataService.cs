@@ -7,7 +7,7 @@ namespace Yakse.Core.Pricing.Services.MarketData
 {
     public class RandomDataMarketDataService : IMarketDataService
     {
-        private const int UpdateFrequencyInSeconds = 10;
+        private const int UpdateFrequencyInSeconds = 5;
 
         private readonly Dictionary<string, (DateTime LastTradeDate, decimal Open, decimal High, decimal Low, decimal Last)> _tickers = new();
         private static readonly Random Rand = new Random();
@@ -26,7 +26,23 @@ namespace Yakse.Core.Pricing.Services.MarketData
 
             var (lastTradeDate, open, high, low, last) =  _tickers[symbol];
 
-            // change this to generate prices automatically, rather than when ever prices are requested
+            // randomly return the same value to simulate case where the a new price is not available
+            // the old the value the less likely it is to be updated
+            var priceAge = (DateTime.UtcNow - lastTradeDate).Seconds;
+            var noNewValueProbability = priceAge switch
+            {
+                > 16 => 90,
+                > 11 => 70,
+                _ => 5
+            };
+            
+            var noPriceAvailable = Rand.Next(100) <= noNewValueProbability;
+            if (noPriceAvailable)
+            {
+                return new StockTick(symbol, open, high, low, last, lastTradeDate);
+            }
+            
+            // to prevent prices updating too frequently, only on set frequency
             if (DateTime.UtcNow.Subtract(lastTradeDate).Seconds < UpdateFrequencyInSeconds) {
                 return new StockTick(symbol, open, high, low, last, DateTime.UtcNow);
             }
@@ -47,7 +63,8 @@ namespace Yakse.Core.Pricing.Services.MarketData
 
         private void AddNewTicker(string symbol){
             var randomStartingPrice = Rand.NextDecimal(2m, 200m);
-                _tickers[symbol] = (DateTime.UtcNow, randomStartingPrice, randomStartingPrice, randomStartingPrice, randomStartingPrice);
+            var lastPrice = GetNewMarketPrice(randomStartingPrice);
+            _tickers[symbol] = (DateTime.UtcNow, randomStartingPrice, randomStartingPrice > lastPrice ? randomStartingPrice : lastPrice, randomStartingPrice < lastPrice ? randomStartingPrice : lastPrice, lastPrice);
         }
 
         private decimal GetNewMarketPrice(decimal lastPrice) {

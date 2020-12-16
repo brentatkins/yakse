@@ -10,7 +10,7 @@ import { StocksComponent } from './stocks/stocks.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { StockPriceMovementComponent } from './stock-price-movement/stock-price-movement.component';
 import { BuyStockComponent } from './buy-stock/buy-stock.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { StockPriceStalenessComponent } from './stock-price-staleness/stock-price-staleness.component';
 import { StockPriceTableComponent } from './stock-price-table/stock-price-table.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
