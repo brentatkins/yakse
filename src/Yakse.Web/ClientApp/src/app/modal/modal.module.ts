@@ -6,6 +6,6 @@ import { ModalComponent } from './modal.component';
 @NgModule({
   declarations: [ModalComponent],
   imports: [CommonModule],
-  exports: [ModalComponent]
+  exports: [ModalComponent],
 })
-export class ModalModule { }
+export class ModalModule {}

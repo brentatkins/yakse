@@ -25,7 +25,9 @@
           }}</app-stock-price-movement>
       </td>
       <td><a type="button" (click)="buyStock(stock)" href="#">buy</a></td>
-      <td><app-stock-price-staleness [priceDate]="stock.priceDate"></app-stock-price-staleness></td>
+      <td>
+        <app-stock-price-staleness [priceDate]="stock.priceDate"></app-stock-price-staleness>
+      </td>
     </tr>
     </tbody>
   </table>

@@ -1,5 +1,5 @@
-import { Component, OnInit , Input} from '@angular/core';
-import { Observable } from "rxjs";
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { ModalService } from './modal.service';
 
@@ -12,25 +12,27 @@ import { ModalService } from './modal.service';
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">{{ title }}</p>
-            <button class="delete" aria-label="close" (click)="close()"></button>
+            <button
+              class="delete"
+              aria-label="close"
+              (click)="close()"
+            ></button>
           </header>
           <section class="modal-card-body">
             <ng-content></ng-content>
           </section>
-          <footer class="modal-card-foot">
-          </footer>
+          <footer class="modal-card-foot"></footer>
         </div>
       </div>
     </ng-container>
-  `
+  `,
 })
 export class ModalComponent implements OnInit {
+  @Input() title!: string;
 
-  @Input() title!: string
+  isOpen$!: Observable<boolean>;
 
-  isOpen$!: Observable<boolean>
-
-  constructor(private modalService : ModalService) { }
+  constructor(private modalService: ModalService) {}
 
   ngOnInit() {
     this.isOpen$ = this.modalService.watch();

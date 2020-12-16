@@ -3,7 +3,9 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
-  private isOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private isOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
   watch() {
     return this.isOpen$.asObservable();

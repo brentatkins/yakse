@@ -9,6 +9,7 @@
     <app-buy-stock [stock]="selectedStock" (placeOrderEvent)="placeOrder($event)"></app-buy-stock>
   </ng-container>
   <ng-container *ngIf="orderPlaced">
-    <p>You have placed an order for {{ orderPlaced.quantity }} units of stock {{ orderPlaced.symbol }} at price {{ orderPlaced.bidPrice | number:'.2'}}</p>
+    <p>You have placed an order for {{ orderPlaced.quantity }} units of stock {{ orderPlaced.symbol }} at
+      price {{ orderPlaced.bidPrice | number:'.2'}}</p>
   </ng-container>
 </app-modal>

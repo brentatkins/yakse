@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StockPricingService } from '../services/stock-pricing.service';
 import { OrderService } from '../services/order.service';
 import { StockOrder, StockPrice } from '../models';
-import { ModalService } from "../modal/modal.service";
+import { ModalService } from '../modal/modal.service';
 
 @Component({
   selector: 'app-stocks',
@@ -15,9 +15,15 @@ export class StocksComponent implements OnInit {
   selectedStock?: StockPrice;
   orderPlaced?: StockOrder;
 
-  constructor(private pricingService: StockPricingService, private orderService: OrderService, private modalService: ModalService) {
+  constructor(
+    private pricingService: StockPricingService,
+    private orderService: OrderService,
+    private modalService: ModalService
+  ) {
     this.stockPrices = [];
-    this.modalService.watch().subscribe(isOpen => !isOpen && this.onModalClose());
+    this.modalService
+      .watch()
+      .subscribe((isOpen) => !isOpen && this.onModalClose());
   }
 
   ngOnInit() {
@@ -35,16 +41,15 @@ export class StocksComponent implements OnInit {
     this.modalService.open();
   }
 
-  placeOrder({quantity, bidPrice}: { quantity: number, bidPrice: number}) {
+  placeOrder({ quantity, bidPrice }: { quantity: number; bidPrice: number }) {
     if (this.selectedStock) {
       const { symbol } = this.selectedStock;
-      const order = { symbol, quantity, bidPrice}
+      const order = { symbol, quantity, bidPrice };
 
-      this.orderService.placeOrder(order)
-        .subscribe(() => {
-          this.selectedStock = undefined;
-          this.orderPlaced = order;
-        });
+      this.orderService.placeOrder(order).subscribe(() => {
+        this.selectedStock = undefined;
+        this.orderPlaced = order;
+      });
     }
   }
 
@@ -53,10 +58,9 @@ export class StocksComponent implements OnInit {
     this.orderPlaced = undefined;
   }
 
-  // may not need to do this, use an async pipe
   private updateStockPrices(updatedStockPrices: StockPrice[]) {
-    updatedStockPrices.forEach(s => {
-      const current = this.stockPrices.find(x => x.symbol === s.symbol);
+    updatedStockPrices.forEach((s) => {
+      const current = this.stockPrices.find((x) => x.symbol === s.symbol);
       if (current) {
         current.lastPrice = s.lastPrice;
         current.delta = s.delta;
@@ -65,6 +69,6 @@ export class StocksComponent implements OnInit {
       } else {
         this.stockPrices = [...this.stockPrices, s];
       }
-    })
+    });
   }
 }

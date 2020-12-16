@@ -1,20 +1,37 @@
-import {Component, Input, OnChanges, OnInit, OnDestroy, SimpleChanges} from '@angular/core';
-import {merge, Observable, Subject, Subscription, timer} from "rxjs";
-import {distinctUntilChanged, filter, map, mapTo, startWith, switchMap, tap} from "rxjs/operators";
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  OnDestroy,
+  SimpleChanges,
+} from '@angular/core';
+import { merge, Observable, Subject, Subscription, timer } from 'rxjs';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  mapTo,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 import * as moment from 'moment';
 
 @Component({
   selector: 'app-stock-price-staleness',
-  template: `
-    <span *ngIf="isStale">
+  template: ` <span *ngIf="isStale">
       <span class="icon has-text-warning">
         <i class="fas fa-exclamation-triangle"></i>
       </span>
-      <span class="is-size-7">Last update {{ priceAge | number:'.0-0' }}s ago</span>
+      <span class="is-size-7"
+        >Last update {{ priceAge | number: '.0-0' }}s ago</span
+      >
     </span>
-        <span *ngIf="!isStale" class="icon"></span>`
+    <span *ngIf="!isStale" class="icon"></span>`,
 })
-export class StockPriceStalenessComponent implements OnInit, OnChanges, OnDestroy {
+export class StockPriceStalenessComponent
+  implements OnInit, OnChanges, OnDestroy {
   @Input() priceDate!: Date;
   isStale: boolean = false;
   priceAge?: number;
@@ -29,14 +46,16 @@ export class StockPriceStalenessComponent implements OnInit, OnChanges, OnDestro
     this.timer$ = this.priceDateChanged$.pipe(
       startWith(0),
       switchMap(() => timer(0, this.stalenessThreshold)),
-      map(v => v > 0),
+      map((v) => v > 0),
       distinctUntilChanged()
     );
   }
 
-  ngOnInit(){
-    this.subscription = this.timer$.subscribe(isStale => {
-      this.priceAge = moment.duration(moment().diff(this.priceDate)).asSeconds();
+  ngOnInit() {
+    this.subscription = this.timer$.subscribe((isStale) => {
+      this.priceAge = moment
+        .duration(moment().diff(this.priceDate))
+        .asSeconds();
       this.isStale = isStale;
     });
   }
@@ -47,8 +66,8 @@ export class StockPriceStalenessComponent implements OnInit, OnChanges, OnDestro
     }
   }
 
-  ngOnDestroy(){
-    if (this.subscription){
+  ngOnDestroy() {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
