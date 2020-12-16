@@ -35,9 +35,9 @@ export class StocksComponent implements OnInit {
     this.modalService.open();
   }
 
-  placeOrder(quantity: number) {
+  placeOrder({quantity, bidPrice}: { quantity: number, bidPrice: number}) {
     if (this.selectedStock) {
-      const { symbol, lastPrice: bidPrice} = this.selectedStock;
+      const { symbol } = this.selectedStock;
       const order = { symbol, quantity, bidPrice}
 
       this.orderService.placeOrder(order)

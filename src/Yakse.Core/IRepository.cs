@@ -15,6 +15,6 @@ namespace Yakse.Core
         
         Task Insert<T>(T obj) where T : BaseEntity;
 
-        Task Update<T>(T obj, string id) where T : BaseEntity;
+        Task Update<T>(T obj) where T : BaseEntity;
     }
 }

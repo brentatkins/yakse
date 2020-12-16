@@ -17,4 +17,7 @@ export interface Order {
   quantity: number;
   bidPrice: number;
   orderDate: Date;
+  status: string;
+  tradePrice?: number;
+  tradeDate?: Date;
 }

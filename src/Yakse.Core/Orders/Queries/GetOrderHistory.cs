@@ -14,5 +14,5 @@ namespace Yakse.Core.Orders.Queries
         }
     }
 
-    public record OrderDto(string CustomerId, string Symbol, int Quantity, decimal BidPrice, DateTime OrderDate);
+    public record OrderDto(string CustomerId, string Symbol, int Quantity, decimal BidPrice, DateTime OrderDate, string Status, decimal? TradePrice, DateTime? TradeDate);
 }

@@ -5,6 +5,9 @@
     <th>Symbol</th>
     <th>Units</th>
     <th>Bid Price</th>
+    <th>Status</th>
+    <th>Trade Date</th>
+    <th>Trade Price</th>
   </tr>
   </thead>
   <tbody>
@@ -13,6 +16,9 @@
     <td >{{ order.symbol }}</td>
     <td class="has-text-right">{{ order.quantity }} </td>
     <td class="has-text-right">{{ order.bidPrice | number:'.3-3' }}</td>
+    <td>{{ order.status }}</td>
+    <td>{{ order.tradeDate | date:'short' }}</td>
+    <td>{{ order.tradePrice | number:'.3-3' }}</td>
   </tr>
   </tbody>
 </table>

@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Yakse.Core.Pricing.Events;
 using Yakse.Core.Pricing.Services.MarketData;
 
 namespace Yakse.Core.Pricing.Commands
@@ -12,11 +13,13 @@ namespace Yakse.Core.Pricing.Commands
 
     public class UpdateTickersCommandHandler : AsyncRequestHandler<UpdateTickersCommand>
     {
+        private readonly IPublisher _mediator;
         private readonly IMarketDataProvider _marketDataProvider;
         private readonly IRepository _repository;
 
-        public UpdateTickersCommandHandler(IMarketDataProvider marketDataProvider, IRepository repository)
+        public UpdateTickersCommandHandler(IPublisher mediator, IMarketDataProvider marketDataProvider, IRepository repository)
         {
+            _mediator = mediator;
             _marketDataProvider = marketDataProvider;
             _repository = repository;
         }
@@ -32,7 +35,8 @@ namespace Yakse.Core.Pricing.Commands
             {
                 var stock = stocks.Single(x => x.Symbol == stockTick.Symbol);
                 stock.RecordPrice(stockTick);
-                await _repository.Update(stock, stock.Id);
+                await _repository.Update(stock);
+                await _mediator.Publish(new StockPriceUpdatedEvent(stock.Symbol, stockTick.Last));
             }
         }
     }

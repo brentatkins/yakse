@@ -20,7 +20,9 @@ namespace Yakse.Core.Orders.Queries
         {
             var orders = await _repository.Find<Order>(x => x.CustomerId == request.CustomerId);
             
-            return orders.OrderByDescending(x => x.OrderDate).Select(o => new OrderDto(o.CustomerId, o.Symbol, o.Quantity, o.BidPrice, o.OrderDate));
+            return orders
+                .OrderByDescending(x => x.OrderDate)
+                .Select(o => new OrderDto(o.CustomerId, o.Symbol, o.Quantity, o.BidPrice, o.OrderDate, o.Status.ToString(), o.TradePrice, o.TradeDate));
         }
     }
 }

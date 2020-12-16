@@ -65,14 +65,14 @@ namespace Yakse.Infrastructure
             return Task.CompletedTask;
         }
 
-        public Task Update<T>(T obj, string id) where T : BaseEntity
+        public Task Update<T>(T obj) where T : BaseEntity
         {
             if (!_items.ContainsKey(typeof(T)))
             {
                 _items.TryAdd(typeof(T), new ConcurrentDictionary<string, BaseEntity>());
             }
 
-            _items[typeof(T)][id] = obj;
+            _items[typeof(T)][obj.Id] = obj;
 
             return Task.CompletedTask;
         }
