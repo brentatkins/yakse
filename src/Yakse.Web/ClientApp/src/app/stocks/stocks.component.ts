@@ -38,7 +38,7 @@ export class StocksComponent implements OnInit {
   placeOrder(quantity: number) {
     if (this.selectedStock) {
       const { symbol, lastPrice: bidPrice} = this.selectedStock;
-      const order = { customerId: "1", symbol, quantity, bidPrice}
+      const order = { symbol, quantity, bidPrice}
 
       this.orderService.placeOrder(order)
         .subscribe(() => {
@@ -53,6 +53,7 @@ export class StocksComponent implements OnInit {
     this.orderPlaced = undefined;
   }
 
+  // may not need to do this, use an async pipe
   private updateStockPrices(updatedStockPrices: StockPrice[]) {
     updatedStockPrices.forEach(s => {
       const current = this.stockPrices.find(x => x.symbol === s.symbol);

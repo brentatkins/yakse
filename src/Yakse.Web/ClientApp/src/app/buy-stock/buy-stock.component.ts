@@ -8,7 +8,7 @@ import {StockPrice} from "../models";
   template: `
     <p class="is-size-3 has-text-weight-bold">{{ stock.symbol}}</p>
     <p>Company: [Company description and name]</p>
-    <p>Last trade price: {{ stock.lastPrice | number:'.2' }}</p>
+    <p>Last trade price: {{ stock.lastPrice | number:'.3-3' }}</p>
     <p class="is-size-5 is-italic pt-4">To place an order, complete the details below</p>
     <div class="field pt-4">
       <label class="label">Quantity</label>

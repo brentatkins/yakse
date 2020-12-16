@@ -26,7 +26,7 @@ namespace Yakse.Core.Pricing.Queries
 
             var ticks = await _marketDataService.GetIntradayPrice(stockCodes);
 
-            return ticks.Select(x =>
+            return ticks.OrderBy(x => x.Symbol).Select(x =>
                 new StockPriceDto(x.Symbol, x.Last, x.Last - x.Open, (x.Last - x.Open) / x.Open, x.Date));
         }
     }

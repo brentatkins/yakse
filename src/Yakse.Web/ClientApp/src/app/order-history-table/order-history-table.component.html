@@ -1,0 +1,18 @@
+ <table class="table">
+  <thead>
+  <tr>
+    <th>Order Date</th>
+    <th>Symbol</th>
+    <th>Units</th>
+    <th>Bid Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let order of orderHistory$ | async">
+    <td>{{ order.orderDate | date:'short' }}</td>
+    <td >{{ order.symbol }}</td>
+    <td class="has-text-right">{{ order.quantity }} </td>
+    <td class="has-text-right">{{ order.bidPrice | number:'.3-3' }}</td>
+  </tr>
+  </tbody>
+</table>

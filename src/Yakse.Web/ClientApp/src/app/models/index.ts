@@ -7,8 +7,14 @@ export interface StockPrice {
 }
 
 export interface StockOrder {
-  customerId: string;
   symbol: string;
   quantity: number;
   bidPrice: number;
+}
+
+export interface Order {
+  symbol: string;
+  quantity: number;
+  bidPrice: number;
+  orderDate: Date;
 }

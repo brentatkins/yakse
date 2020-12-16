@@ -1,4 +1,9 @@
-<app-stock-price-table [stockPrices]="stockPrices" (buyStockEvent)="buyStock($event)"></app-stock-price-table>
+<div class="is-flex is-align-items-center is-flex-direction-column">
+  <div class="is-size-3">Stock Prices</div>
+  <div>
+    <app-stock-price-table [stockPrices]="stockPrices" (buyStockEvent)="buyStock($event)"></app-stock-price-table>
+  </div>
+</div>
 <app-modal title="Stock details">
   <ng-container *ngIf="selectedStock">
     <app-buy-stock [stock]="selectedStock" (placeOrderEvent)="placeOrder($event)"></app-buy-stock>
