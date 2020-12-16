@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Yakse.Core.Pricing.Services.MarketData
 {
-    public class RandomDataMarketDataService : IMarketDataService
+    public class RandomDataMarketDataProvider : IMarketDataProvider
     {
         private const int UpdateFrequencyInSeconds = 5;
 
@@ -31,9 +31,9 @@ namespace Yakse.Core.Pricing.Services.MarketData
             var priceAge = (DateTime.UtcNow - lastTradeDate).Seconds;
             var noNewValueProbability = priceAge switch
             {
-                > 16 => 90,
-                > 11 => 70,
-                _ => 5
+                > 15 => 95,
+                > 8 => 50,
+                _ => 10
             };
             
             var noPriceAvailable = Rand.Next(100) <= noNewValueProbability;

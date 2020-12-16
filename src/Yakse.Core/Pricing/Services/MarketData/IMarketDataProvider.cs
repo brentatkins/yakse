@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Yakse.Core.Pricing.Services.MarketData
 {
-    public interface IMarketDataService
+    public interface IMarketDataProvider
     {
         Task<IEnumerable<StockTick>> GetIntradayPrice(string[] symbols);
     }
