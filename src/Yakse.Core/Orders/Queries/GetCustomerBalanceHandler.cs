@@ -22,7 +22,7 @@ namespace Yakse.Core.Orders.Queries
             // running calculation everytime
             var startingBalance = 10000m;
 
-            var customerOrders = await _repository.Find<Order>(x => x.CustomerId == request.CustomerId);
+            var customerOrders = await _repository.Find<Order>(x => x.CustomerId == request.CustomerId && x.Status == Order.OrderStatus.Executed);
             var totalOrderAmount = customerOrders.Select(x => x.Quantity * x.BidPrice).Sum();
 
             var balance = startingBalance - totalOrderAmount;

@@ -35,5 +35,12 @@ namespace Yakse.Web.Controllers
                 placeOrder.BidPrice);
             await _mediator.Send(command);
         }
+        
+        [HttpGet]
+        [Route("balance")]
+        public async Task<decimal> GetBalance()
+        {
+            return await _mediator.Send(new GetCustomerBalance(HardcodedCustomerId));
+        }
     }
 }
