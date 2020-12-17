@@ -1,12 +1,12 @@
 # YakSE
----
+
 Yak Stock Exchange application.
 
 ## Description
 
 This application is built using:
 
-- `Backend`: .NET 5.0
+- `Backend` .NET 5.0
 - `Frontend` Angular 11
 
 Persistence is managed using an in-memory store and is tied to the lifecycle of the application. As a result, all data is lost when the application is stopped.
