@@ -22,6 +22,9 @@ Contains the implementation for persistence. This is currently a very simple in-
 #### Yakse.Web
 This project contains the ASP.NET API and Angular application. It was built using the `Angular` dotnet template. Frontend code can be found in the `ClientApp` folder of this project.
 
+#### Yakse.Core.Tests
+Test project containing a very limited set of tests.
+
 ## Running The Application
 
 1. Download the source code from github
