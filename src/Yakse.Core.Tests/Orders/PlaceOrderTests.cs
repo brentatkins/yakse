@@ -4,40 +4,22 @@ using FluentAssertions;
 using Xunit;
 using Yakse.Core.Orders.Commands;
 using Yakse.Core.Orders.Queries;
+using Yakse.Core.Pricing;
+using Yakse.Core.Pricing.Commands;
 
 namespace Yakse.Core.Tests.Orders
 {
-    public class PlaceOrderTests : BaseTest
+    public class PlaceOrderTests : BaseTest, IAsyncLifetime
     {
-        [Fact]
-        public async Task PlaceOrder_ReducesBalanceByCorrectAmount()
-        {
-            // arrange
-            var customerId = "customer id 1";
-            var balanceBefore = await Mediator.Send(new GetCustomerBalance(customerId));
-            
-            var symbol = "aaa";
-            var quantity = 10;
-            var bidPrice = 123.32424m;
-            var placeOrderCommand = new PlaceOrder(customerId, symbol, quantity, bidPrice);
-            
-            // act
-            await Mediator.Send(placeOrderCommand);
-            
-            // assert
-            var balanceAfter = await Mediator.Send(new GetCustomerBalance(customerId));
-            var balanceReduction = quantity * bidPrice;
+        private string _stockSymbol = string.Empty;
 
-            balanceAfter.Should().Be(balanceBefore - balanceReduction);
-        } 
-        
         [Fact]
         public async Task PlaceOrder_ShouldBeInOrderHistory()
         {
             // arrange
             var customerId = "customer id 1";
             
-            var symbol = "aaa";
+            var symbol = _stockSymbol;
             var quantity = 10;
             var bidPrice = 123.32424m;
             var placeOrderCommand = new PlaceOrder(customerId, symbol, quantity, bidPrice);
@@ -53,6 +35,17 @@ namespace Yakse.Core.Tests.Orders
             order.Quantity.Should().Be(quantity);
             order.BidPrice.Should().Be(bidPrice);
             order.CustomerId.Should().Be(customerId);
-        } 
+        }
+
+        public async Task InitializeAsync()
+        {
+            await Mediator.Send(new LoadStocks(1));
+            _stockSymbol = (await Repository.All<Stock>()).First().Symbol;
+        }
+
+        public Task DisposeAsync()
+        {
+            return Task.CompletedTask;
+        }
     }
 }

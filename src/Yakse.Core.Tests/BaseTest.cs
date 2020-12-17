@@ -8,6 +8,8 @@ namespace Yakse.Core.Tests
     public abstract class BaseTest
     {
         protected IMediator Mediator { get; }
+        
+        protected IRepository Repository { get; }
 
         protected BaseTest()
         {
@@ -19,6 +21,7 @@ namespace Yakse.Core.Tests
             var provider = serviceCollection.BuildServiceProvider();
 
             Mediator = provider.GetRequiredService<IMediator>();
+            Repository = provider.GetRequiredService<IRepository>();
         }
     }
 }

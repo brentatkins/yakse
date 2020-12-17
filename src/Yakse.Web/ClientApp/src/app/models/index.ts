@@ -22,3 +22,8 @@ export interface Order {
   tradeDate?: Date;
   total: number;
 }
+
+export interface CustomerBalance {
+  cashBalance: number;
+  portfolioBalance: number;
+}

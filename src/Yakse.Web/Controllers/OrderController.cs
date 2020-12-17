@@ -38,7 +38,7 @@ namespace Yakse.Web.Controllers
         
         [HttpGet]
         [Route("balance")]
-        public async Task<decimal> GetBalance()
+        public async Task<BalanceDto> GetBalance()
         {
             return await _mediator.Send(new GetCustomerBalance(HardcodedCustomerId));
         }

@@ -18,12 +18,10 @@ namespace Yakse.Web.HostedServices
         {
             _logger = logger;
             _mediator = mediator;
-            _logger.LogInformation("in here");
         }
         
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("here too");
 
             while (!cancellationToken.IsCancellationRequested)
             {
@@ -34,9 +32,8 @@ namespace Yakse.Web.HostedServices
 
         private async Task UpdatePrices(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("here 33");
+            _logger.LogInformation("Updating stock prices");
 
-            Debug.WriteLine("update prices now");
             var orderHistory = await _mediator.Send(new UpdateTickers());
             _logger.LogInformation(orderHistory.ToString());
         }

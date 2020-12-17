@@ -15,7 +15,7 @@ import { StockPriceStalenessComponent } from './stock-price-staleness/stock-pric
 import { StockPriceTableComponent } from './stock-price-table/stock-price-table.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { OrderHistoryTableComponent } from './order-history-table/order-history-table.component';
-import { UserBalanceComponent } from './user-balance/user-balance.component';
+import { CustomerBalanceComponent } from './customer-balance/customer-balance.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { UserBalanceComponent } from './user-balance/user-balance.component';
     StockPriceTableComponent,
     OrderHistoryComponent,
     OrderHistoryTableComponent,
-    UserBalanceComponent,
+    CustomerBalanceComponent,
   ],
   imports: [
     BrowserModule,
