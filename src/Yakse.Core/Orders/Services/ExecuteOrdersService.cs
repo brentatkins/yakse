@@ -24,6 +24,7 @@ namespace Yakse.Core.Orders.Services
 
             foreach (var order in matchingOrders)
             {
+                // maybe best through mediatr pipeline rather than direct change on domain class
                 order.CompleteOrder(@event.LastTradePrice);
                 await _repository.Update(order);
             }
