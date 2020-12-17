@@ -1,0 +1,19 @@
+<app-page title="Stock Prices">
+  <div *ngIf="!stockPrices.length" class="has-text-centered">
+    <p class="has-text-danger pt-4">No stock symbols are loaded.</p>
+    <p>You can load symbols by issuing a post request to <em class="has-text-info">https://localhost:5001/api/load/[count]</em></p>
+    <p class="is-size-7 is-italic">Replace [count] with the number of symbols to load.</p>
+    <p class="is-size-7 pt-4">If you have loaded symbols but still see this message, please wait a few seconds while stock prices are gathered.</p>
+  </div>
+  <app-stock-price-table *ngIf="stockPrices.length" [stockPrices]="stockPrices"
+                         (buyStockEvent)="buyStock($event)"></app-stock-price-table>
+</app-page>
+<app-modal title="Stock details">
+  <ng-container *ngIf="selectedStock">
+    <app-buy-stock [stock]="selectedStock" (placeOrderEvent)="placeOrder($event)"></app-buy-stock>
+  </ng-container>
+  <ng-container *ngIf="orderPlaced">
+    <p>You have placed an order for {{ orderPlaced.quantity }} units of stock {{ orderPlaced.symbol }} at
+      price {{ orderPlaced.bidPrice | number:'.2'}}</p>
+  </ng-container>
+</app-modal>

@@ -40,6 +40,9 @@
 
     <ItemGroup>
       <Folder Include="ClientApp" />
+      <Folder Include="ClientApp\src\app\components" />
+      <Folder Include="ClientApp\src\app\pages" />
+      <Folder Include="ClientApp\src\pages" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

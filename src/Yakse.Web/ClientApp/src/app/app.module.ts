@@ -6,16 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { ModalModule } from './modal/modal.module';
 
 import { AppComponent } from './app.component';
-import { StocksComponent } from './stocks/stocks.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { StockPriceMovementComponent } from './stock-price-movement/stock-price-movement.component';
-import { BuyStockComponent } from './buy-stock/buy-stock.component';
+import { StocksComponent } from './pages/stocks/stocks.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { StockPriceMovementComponent } from './components/stock-price-movement/stock-price-movement.component';
+import { BuyStockComponent } from './components/buy-stock/buy-stock.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StockPriceStalenessComponent } from './stock-price-staleness/stock-price-staleness.component';
-import { StockPriceTableComponent } from './stock-price-table/stock-price-table.component';
-import { OrderHistoryComponent } from './order-history/order-history.component';
-import { OrderHistoryTableComponent } from './order-history-table/order-history-table.component';
-import { CustomerBalanceComponent } from './customer-balance/customer-balance.component';
+import { StockPriceStalenessComponent } from './components/stock-price-staleness/stock-price-staleness.component';
+import { StockPriceTableComponent } from './components/stock-price-table/stock-price-table.component';
+import { OrderHistoryComponent } from './pages/order-history/order-history.component';
+import { OrderHistoryTableComponent } from './components/order-history-table/order-history-table.component';
+import { CustomerBalanceComponent } from './components/customer-balance/customer-balance.component';
+import { PageComponent } from './components/page/page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CustomerBalanceComponent } from './customer-balance/customer-balance.co
     OrderHistoryComponent,
     OrderHistoryTableComponent,
     CustomerBalanceComponent,
+    PageComponent,
   ],
   imports: [
     BrowserModule,

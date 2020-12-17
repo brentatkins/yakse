@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { StockPricingService } from '../services/stock-pricing.service';
-import { OrderService } from '../services/order.service';
-import { StockOrder, StockPrice } from '../models';
-import { ModalService } from '../modal/modal.service';
+import { StockPricingService } from '../../services/stock-pricing.service';
+import { OrderService } from '../../services/order.service';
+import { StockOrder, StockPrice } from '../../models';
+import { ModalService } from '../../modal/modal.service';
 
 @Component({
   selector: 'app-stocks',

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { StockPrice } from '../models';
+import { StockPrice } from '../../models';
 
 @Component({
   selector: 'app-stock-price-table',

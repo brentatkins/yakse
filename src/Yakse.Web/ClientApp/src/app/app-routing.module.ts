@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StocksComponent } from './stocks/stocks.component';
-import { OrderHistoryComponent } from './order-history/order-history.component';
+import { StocksComponent } from './pages/stocks/stocks.component';
+import { OrderHistoryComponent } from './pages/order-history/order-history.component';
 
 const routes: Routes = [
   { path: '', component: StocksComponent, pathMatch: 'full' },

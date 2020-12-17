@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Order } from '../models';
+import { Order } from '../../models';
 
 @Component({
   selector: 'app-order-history-table',

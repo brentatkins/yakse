@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
-import { StockPrice } from '../models';
+import { StockPrice } from '../../models';
 
 @Component({
   selector: 'app-buy-stock',
