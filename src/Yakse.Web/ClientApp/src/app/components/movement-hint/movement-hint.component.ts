@@ -10,13 +10,13 @@ import {
   selector: 'app-movement-hint',
   template: `
     <span
-      *ngIf="movement > 0"
+      *ngIf="movement !== undefined && movement > 0"
       class="icon has-text-success animate__animated animate_slower animate__fadeOut"
     >
       <i class="fas fa-angle-up"></i>
     </span>
     <span
-      *ngIf="movement < 0"
+      *ngIf="movement !== undefined && movement < 0"
       class="icon has-text-danger animate__animated animate_slower animate__fadeOut"
     >
       <i class="fas fa-angle-down"></i>
