@@ -20,7 +20,7 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'app-stock-price-staleness',
-  template: ` <span *ngIf="isStale">
+  template: ` <span *ngIf="isStale" class="is-flex is-align-items-center">
       <span class="icon has-text-warning">
         <i class="fas fa-exclamation-triangle"></i>
       </span>
@@ -28,7 +28,9 @@ import * as moment from 'moment';
         >Last update {{ priceAge | number: '.0-0' }}s ago</span
       >
     </span>
-    <span *ngIf="!isStale" class="icon"></span>`,
+    <span *ngIf="!isStale" class="icon">
+      <i class="fas fa-exclamation-triangle is-invisible"></i
+    ></span>`,
 })
 export class StockPriceStalenessComponent
   implements OnInit, OnChanges, OnDestroy {

@@ -13,7 +13,12 @@
     <tbody>
     <tr *ngFor="let stock of stockPrices">
       <td>{{ stock.symbol }}</td>
-      <td class="has-text-right">{{ stock.lastPrice | number: ".3-3" }}</td>
+      <td class="has-text-right">
+        <span class="is-flex is-align-items-start">
+        <app-movement-hint [price]="stock.lastPrice"></app-movement-hint>
+          {{ stock.lastPrice | number: ".3-3" }}
+          </span>
+      </td>
       <td class="has-text-right">
         <app-stock-price-movement [priceChange]="stock.delta">{{
           stock.delta | number: ".3"

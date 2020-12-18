@@ -17,6 +17,7 @@ import { OrderHistoryComponent } from './pages/order-history/order-history.compo
 import { OrderHistoryTableComponent } from './components/order-history-table/order-history-table.component';
 import { CustomerBalanceComponent } from './components/customer-balance/customer-balance.component';
 import { PageComponent } from './components/page/page.component';
+import { MovementHintComponent } from './components/movement-hint/movement-hint.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PageComponent } from './components/page/page.component';
     OrderHistoryTableComponent,
     CustomerBalanceComponent,
     PageComponent,
+    MovementHintComponent,
   ],
   imports: [
     BrowserModule,
